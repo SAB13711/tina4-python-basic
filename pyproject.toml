@@ -1,0 +1,17 @@
+[project]
+name = "test-project"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Creed13711",email = "schalk.andre@gmail.com"}
+]
+readme = "README.md"
+requires-python = "<4.0,>=3.12"
+dependencies = [
+    "tina4-python (>=0.2.91,<0.3.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

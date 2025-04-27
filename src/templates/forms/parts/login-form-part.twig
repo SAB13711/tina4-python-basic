@@ -1,0 +1,52 @@
+<div class="login-container">
+    <h2>Login</h2>
+    <form id="login-form" method="POST" action="/" onsubmit="return false;">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required autofocus>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Login</button>
+        </div>
+        {%  set formToken = formToken({"page":"Login"}) %}
+    </form>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const loginForm = document.getElementById("login-form");
+
+        loginForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // stop normal form submit
+
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            if (username.trim() === "") {
+                alert("Please enter a username.");
+                return;
+            }
+            if (password.trim() === "") {
+                alert("Please enter a password.");
+                return;
+            }
+            // create post data
+            let postData = {
+                username: username,
+                password: password
+            };
+            // send login request
+            sendRequest("/api/user-login?formToken={{ formToken }}", JSON.stringify(postData), "POST", function (data) {
+                console.log("inside callback for /api/user-login");
+                // the call back is what happens when the response is returned
+                if (data["success"]) {
+                    // login successful
+                } else {
+                    // login unsuccessful
+                }
+            });
+        });
+    });
+</script>

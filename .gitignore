@@ -1,0 +1,7 @@
+/logs/
+/.testing/
+/.idea/
+/secrets/
+/sessions/
+/.env
+/test.db
