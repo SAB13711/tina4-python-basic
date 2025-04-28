@@ -32,13 +32,8 @@
                 alert("Please enter a password.");
                 return;
             }
-            // create post data
-            let postData = {
-                username: username,
-                password: password
-            };
             // send login request
-            sendRequest("/api/user-login?formToken={{ formToken }}", JSON.stringify(postData), "POST", function (data) {
+            sendRequest("/api/user-login?formToken={{ formToken }}&email=" + username + "&password=" + password, null, "POST", function (data) {
                 console.log("inside callback for /api/user-login");
                 // the call back is what happens when the response is returned
                 if (data["success"]) {
